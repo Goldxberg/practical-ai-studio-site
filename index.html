@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light">
 <title>Personal Website · AI Implementation & AI Tools</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,18 +26,17 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 
-  --text: light-dark(#141413, #faf9f5);
-  --text-muted: light-dark(#5e5d59, #b0aea5);
-  --text-faint: light-dark(#8b8a85, #8b8a85);
-  --bg: light-dark(#faf9f5, #141413);
-  --bg-elevated: light-dark(#ffffff, #232220);
-  --border: light-dark(#141413, #141413);
-  --border-light: light-dark(#b0aea5, #3d3929);
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --text-faint: #8b8a85;
+  --bg: #faf9f5;
+  --bg-elevated: #ffffff;
+  --border: #141413;
+  --border-light: #b0aea5;
   --accent: #d97757;
   --accent-blue: #6a9bcc;
   --accent-green: #788c5d;
   --bg-gradient: #faf9f5;
-  --bg-gradient-dark: #141413;
 
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
@@ -55,8 +54,8 @@
   --card-border: color-mix(in srgb, var(--border-light) 35%, transparent);
   --card-border-hover: color-mix(in srgb, var(--border-light) 55%, transparent);
   --card-radius: 8px;
-  --card-inset: light-dark(rgba(255,255,255,0.65), rgba(255,255,255,0.04));
-  --card-inset-hover: light-dark(rgba(255,255,255,0.85), rgba(255,255,255,0.06));
+  --card-inset: rgba(255,255,255,0.65);
+  --card-inset-hover: rgba(255,255,255,0.85);
 }
 
 .accent { color: var(--accent); }
@@ -99,10 +98,11 @@
     font-size: 16px;
     overflow-x: clip;
     scroll-behavior: smooth;
+    color-scheme: light;
   }
   body {
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: light-dark(var(--bg-gradient), var(--bg-gradient-dark));
+    background: var(--bg-gradient);
     color: var(--text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -133,7 +133,7 @@
     margin-bottom: var(--space-4xl);
     position: sticky;
     top: 0;
-    background: light-dark(rgba(250, 249, 245, 0.95), rgba(20, 20, 19, 0.98));
+    background: rgba(250, 249, 245, 0.95);
     z-index: 9999;
   }
   @media (prefers-reduced-transparency: no-preference) {
@@ -538,12 +538,6 @@
     background: #f7f7f5;
     border: 1px solid color-mix(in srgb, var(--border-light) 40%, transparent);
   }
-  @media (prefers-color-scheme: dark) {
-    .tools-card__front {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-    }
-  }
   .tools-card__back {
     background: #222;
     transform: rotateY(180deg);
@@ -595,14 +589,8 @@
     font-size: 0.875rem;
     transition: background 0.2s ease, color 0.2s ease;
   }
-  @media (prefers-color-scheme: dark) {
-    .tools-card__btn { background: var(--card-border); }
-  }
   .tools-card__btn:hover {
     background: #d0d0cb;
-  }
-  @media (prefers-color-scheme: dark) {
-    .tools-card__btn:hover { background: var(--card-border-hover); }
   }
   .tools-card__btn:focus-visible {
     outline: 2px solid var(--accent);
@@ -696,11 +684,6 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(20,20,19,0.92) 0%, rgba(20,20,19,0.4) 40%, transparent 70%);
-  }
-  @media (prefers-color-scheme: light) {
-    .breath-section__bg::after {
-      background: linear-gradient(to top, rgba(20,20,19,0.88) 0%, rgba(20,20,19,0.25) 50%, transparent 75%);
-    }
   }
   .breath-section__content {
     position: relative;
@@ -1612,48 +1595,6 @@
   }
 }
 
-/* ── Theme toggle ── */
-.theme-toggle {
-  appearance: none;
-  border: 1px solid var(--card-border);
-  background: var(--card-bg);
-  border-radius: var(--card-radius);
-  width: 2.25rem;
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  transition: border-color 0.22s ease, background 0.22s ease, transform 0.22s var(--ease-out);
-  box-shadow: inset 0 1px 0 0 var(--card-inset);
-  flex-shrink: 0;
-}
-.theme-toggle:hover {
-  border-color: var(--card-border-hover);
-  transform: translateY(-1px);
-}
-.theme-toggle:active { transform: translateY(0); }
-.theme-toggle:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-.theme-toggle svg {
-  width: 1rem;
-  height: 1rem;
-  color: var(--text-muted);
-  transition: color 0.2s ease;
-}
-.theme-toggle:hover svg { color: var(--text); }
-.theme-toggle__moon { display: none; }
-html[data-theme="dark"] .theme-toggle__sun { display: none; }
-html[data-theme="dark"] .theme-toggle__moon { display: block; }
-html[data-theme="light"] .theme-toggle__sun { display: block; }
-html[data-theme="light"] .theme-toggle__moon { display: none; }
-
-/* Force color scheme via data attribute */
-html[data-theme="dark"] { color-scheme: dark; }
-html[data-theme="light"] { color-scheme: light; }
 </style>
 </head>
 <body>
@@ -1667,10 +1608,6 @@ html[data-theme="light"] { color-scheme: light; }
         <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#contact">Contact</a>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
-          <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
       </nav>
     </header>
 
@@ -2079,32 +2016,6 @@ html[data-theme="light"] { color-scheme: light; }
     (function() {
       'use strict';
 
-      /* ── Dark mode toggle ── */
-      (function() {
-        var toggle = document.getElementById('themeToggle');
-        var html = document.documentElement;
-        var stored = localStorage.getItem('theme');
-
-        if (stored) {
-          html.setAttribute('data-theme', stored);
-        }
-
-        toggle.addEventListener('click', function() {
-          var current = html.getAttribute('data-theme');
-          var isDark;
-
-          if (current) {
-            isDark = current === 'dark';
-          } else {
-            isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          }
-
-          var next = isDark ? 'light' : 'dark';
-          html.setAttribute('data-theme', next);
-          localStorage.setItem('theme', next);
-        });
-      })();
-
       /* ── AI Tools: tap to flip on touch devices ── */
       (function() {
         var wraps = document.querySelectorAll('.tools-card-wrap');
@@ -2168,4 +2079,3 @@ html[data-theme="light"] { color-scheme: light; }
 
 </body>
 </html>
-
